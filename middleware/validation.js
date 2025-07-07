@@ -5,7 +5,7 @@ export const validateUrl = (req, res, next) => {
     return res.status(400).json({ error: "Valid URL is required" });
   }
   
-  const urlRegex = /^https?:\/\/([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+  const urlRegex = /^https?:\/\/[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\/[\w.-]*)?$/;
   if (!urlRegex.test(originalUrl)) {
     return res.status(400).json({ error: "Invalid URL format" });
   }
@@ -16,7 +16,7 @@ export const validateUrl = (req, res, next) => {
 export const validateAuth = (req, res, next) => {
   const { email, password, firstName, lastName } = req.body;
   
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (!email || !emailRegex.test(email)) {
     return res.status(400).json({ error: "Valid email is required" });
   }
@@ -40,7 +40,7 @@ export const validateAuth = (req, res, next) => {
 export const validateUserId = (req, res, next) => {
   const { userId } = req.params;
   
-  if (!userId || !/^[a-fA-F0-9]{24}$/.test(userId)) {
+  if (!userId || typeof userId !== 'string' || !/^[a-fA-F0-9]{24}$/.test(userId)) {
     return res.status(400).json({ error: "Invalid user ID" });
   }
   

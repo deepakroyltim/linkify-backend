@@ -67,10 +67,9 @@ router.post("/generateqr", validateUrl, async (req, res) => {
 
     res.json({ rawCode: qrDataUrl });
   } catch (error) {
-    console.log(error.message);
+    console.error("QR generation error:", error);
     res.status(500).json({ 
-      error: "Server Error", 
-      message: error.message 
+      error: "Server Error" 
     });
   }
 });
