@@ -2,9 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
-import UrlRouter from "./routes/urlShortener.js";
+import LinksRouter from "./routes/links.js";
 import AuthRouter from "./routes/auth.js";
-import QRCodeRouter from "./routes/qrCode.js";
+import RedirectRouter from "./routes/redirect.js";
 
 const app = express();
 dotenv.config();
@@ -25,9 +25,9 @@ mongoose
 app.get("/", (req, res) => {
   res.json({ status: true, message: "Server is up and running!" });
 });
-app.use("/urlshortener/", UrlRouter);
-app.use("/auth/", AuthRouter);
-app.use("/qrcode/", QRCodeRouter);
+app.use("/api/auth/", AuthRouter);
+app.use("/api/links/", LinksRouter);
+app.use("/", RedirectRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

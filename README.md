@@ -43,18 +43,15 @@ A Node.js backend service for URL shortening and QR code generation.
 
 ## API Endpoints
 
-### URL Shortener
-- `POST /urlshortener/shorten` - Create short URL
-- `GET /urlshortener/:code` - Redirect to original URL
-- `GET /urlshortener/user/:userId/links` - Get user's links
-
-### QR Code
-- `POST /qrcode/generateqr` - Generate QR code
-- `GET /qrcode/user/:userId/links` - Get user's QR codes
+### Links (URL Shortener & QR Code)
+- `POST /api/links/shorten` - Create short URL
+- `POST /api/links/generateqr` - Generate QR code
+- `GET /api/links/user/:userId` - Get user's links
+- `GET /:code` - Redirect to original URL (public)
 
 ### Authentication
-- `POST /auth/signup` - User registration
-- `POST /auth/signin` - User login
+- `POST /api/auth/signup` - User registration
+- `POST /api/auth/signin` - User login
 
 ## Environment Variables
 
